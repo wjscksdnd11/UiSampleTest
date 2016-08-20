@@ -39,22 +39,26 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
+view = LayoutInflater.from(parent.getContext())
+        .inflate(R.layout.list_item_card_big,parent,false);
+        return new RecyclerView.ViewHolder(view) {
+        };
 
-        switch (viewType) {
-            case TYPE_HEADER: {
-                view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.list_item_card_big, parent, false);
-                return new RecyclerView.ViewHolder(view) {
-                };
-            }
-            case TYPE_CELL: {
-                view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.list_item_card_small, parent, false);
-                return new RecyclerView.ViewHolder(view) {
-                };
-            }
-        }
-        return null;
+//        switch (viewType) {
+//            case TYPE_HEADER: {
+//                view = LayoutInflater.from(parent.getContext())
+//                        .inflate(R.layout.list_item_card_big, parent, false);
+//                return new RecyclerView.ViewHolder(view) {
+//                };
+//            }
+//            case TYPE_CELL: {
+//                view = LayoutInflater.from(parent.getContext())
+//                        .inflate(R.layout.list_item_card_small, parent, false);
+//                return new RecyclerView.ViewHolder(view) {
+//                };
+//            }
+//        }
+//        return null;
     }
 
 

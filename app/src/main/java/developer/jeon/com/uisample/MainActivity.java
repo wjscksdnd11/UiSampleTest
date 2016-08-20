@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
@@ -14,13 +15,21 @@ import com.github.florent37.materialviewpager.header.HeaderDesign;
 public class MainActivity extends AppCompatActivity {
     private MaterialViewPager mViewPager;
     private Toolbar toolbar;
+private final static String INCOME="수입";
+    private final static String EXPENSE="지출";
 
+    TextView  headerText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         setTitle("");
+//        View  textView = (View)findViewById(R.id.logo_white);
+
+
+         headerText  = (TextView)findViewById(R.id.logo_white);
+
 
         mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
 
@@ -29,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
+
+
 
         mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
@@ -48,20 +59,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public int getCount() {
-                return 4;
+                return 2;
             }
 
             @Override
             public CharSequence getPageTitle(int position) {
                 switch (position % 4) {
                     case 0:
-                        return "Selection";
+                        return INCOME;
                     case 1:
-                        return "Actualités";
-                    case 2:
-                        return "Professionnel";
-                    case 3:
-                        return "Divertissement";
+                        return EXPENSE;
+
                 }
                 return "";
             }
@@ -72,21 +80,19 @@ public class MainActivity extends AppCompatActivity {
             public HeaderDesign getHeaderDesign(int page) {
                 switch (page) {
                     case 0:
+                        headerText.setText("이번달 수입");
                         return HeaderDesign.fromColorResAndUrl(
-                                R.color.green,
+
+                                R.color.headerColor,
                                 "https://fs01.androidpit.info/a/63/0e/android-l-wallpapers-630ea6-h900.jpg");
+
+
                     case 1:
+                        headerText.setText("이번달 지출");
                         return HeaderDesign.fromColorResAndUrl(
-                                R.color.blue,
+                                R.color.headerColor,
                                 "http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2014/06/wallpaper_51.jpg");
-                    case 2:
-                        return HeaderDesign.fromColorResAndUrl(
-                                R.color.cyan,
-                                "http://www.droid-life.com/wp-content/uploads/2014/10/lollipop-wallpapers10.jpg");
-                    case 3:
-                        return HeaderDesign.fromColorResAndUrl(
-                                R.color.red,
-                                "http://www.tothemobile.com/wp-content/uploads/2014/07/original.jpg");
+
                 }
 
                 //execute others actions if needed (ex : modify your header logo)

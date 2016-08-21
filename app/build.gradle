@@ -27,4 +27,5 @@ dependencies {
         transitive = true
     }
     compile 'com.android.support:support-v4:23.0.3'
+    compile 'com.android.support:design:24.2.0'
 }

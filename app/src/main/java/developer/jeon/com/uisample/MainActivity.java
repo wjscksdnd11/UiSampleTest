@@ -3,7 +3,6 @@ package developer.jeon.com.uisample;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
@@ -12,13 +11,14 @@ import android.widget.Toast;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends DrawerActivity {
     private MaterialViewPager mViewPager;
     private Toolbar toolbar;
-private final static String INCOME="수입";
-    private final static String EXPENSE="지출";
+    private final static String INCOME = "수입";
+    private final static String EXPENSE = "지출";
 
-    TextView  headerText;
+    TextView headerText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,18 +28,15 @@ private final static String INCOME="수입";
 //        View  textView = (View)findViewById(R.id.logo_white);
 
 
-         headerText  = (TextView)findViewById(R.id.logo_white);
+        headerText = (TextView) findViewById(R.id.logo_white);
 
 
         mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
 
         toolbar = mViewPager.getToolbar();
-
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
-
-
 
         mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
@@ -76,6 +73,7 @@ private final static String INCOME="수입";
         });
 
         mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
+
             @Override
             public HeaderDesign getHeaderDesign(int page) {
                 switch (page) {
@@ -84,7 +82,7 @@ private final static String INCOME="수입";
                         return HeaderDesign.fromColorResAndUrl(
 
                                 R.color.headerColor,
-                                "https://fs01.androidpit.info/a/63/0e/android-l-wallpapers-630ea6-h900.jpg");
+                                "http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2014/06/wallpaper_51.jpg");
 
 
                     case 1:
@@ -99,7 +97,11 @@ private final static String INCOME="수입";
 
                 return null;
             }
+
+
+
         });
+
 
         mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
